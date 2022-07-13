@@ -1,4 +1,4 @@
-const mideleware = require("./middleware");
+const loggerMiddleware = require("./middleware/logger");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const config = require("config");
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 
 app.use(express.static("public"));
-app.use(mideleware); //Local library for middleware example
+app.use(loggerMiddleware); //Local library for middleware example, works like an interceptor
 
 app.set("view engine", "pug"); //Templating engine configuration
 app.set("views", "./views");
