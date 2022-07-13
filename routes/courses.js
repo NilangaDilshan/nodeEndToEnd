@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Joi = require("joi");
+//const Joi = require("joi");
 
 const courses = [
   { id: 1, name: "couse 1" },
