@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //Template Engine Test Route
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   console.log("Pug template Result");
   res.render("index", {
     title: "My Express APP",

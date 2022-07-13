@@ -8,8 +8,10 @@ const startupDebugger = require("debug")("app:startup");
 const dbDebugger = require("debug")("app:db"); // For all wild car-> export DEBUG=app:* , export DEBUG=app:startup, export DEBUG=app:db, For no debug log export DEBUG=
 const app = express();
 
-const courses = require("./courses");
+const courses = require("./routes/courses");
 app.use("/api/courses", courses);
+const home = require("./routes/home");
+app.use("/", home);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
