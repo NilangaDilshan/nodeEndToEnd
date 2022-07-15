@@ -1,0 +1,41 @@
+function sayHello(name) {
+  console.log("Hello " + name); //Global Object
+}
+
+sayHello("Hello Dilshan");
+globalThis.console.log("Slayer");
+
+var sayHello_2 = function () {
+  console.log("tester");
+};
+
+sayHello_2();
+
+console.log(module);
+
+/* const logger = require("./logger");
+logger.log("Test Module");
+ */
+
+const logger = require("./logger");
+logger("Test Module");
+
+const path = require("path");
+var pathObj = path.parse(__filename);
+console.log(pathObj);
+
+const os = require("os");
+var totalMem = os.totalmem();
+var freeMem = os.freemem();
+console.log(totalMem);
+console.log(freeMem);
+console.log(`Total Memory: ${totalMem}`);
+console.log(`Free Memory: ${freeMem}`);
+
+const fs = require("fs");
+var files = fs.readdirSync("./");
+console.log(`Files: ${files}`);
+
+fs.readdir("./", function (err, files) {
+  if (err) console.log("Error: " + err);
+});
