@@ -19,7 +19,7 @@ function displayUser(user) {
 
 function displayRepositories(repos) {
   //console.log(`Repos: ${repos}`);
-  console.log("Repos: %O", JSON.stringify(repos));
+  console.log("Repos: ", JSON.stringify(repos));
 }
 function getUser(id, callback) {
   setTimeout(() => {
