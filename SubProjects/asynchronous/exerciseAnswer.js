@@ -28,7 +28,7 @@ function sendEmail(email, movies) {
   });
 }
 
-async function callAsyncWithSynchronous() {
+async function notifyCustomer() {
   const customer = await getCustomer(1);
   if (customer.isGold) {
     console.log("Customer is gold!");
@@ -37,4 +37,4 @@ async function callAsyncWithSynchronous() {
   }
 }
 
-callAsyncWithSynchronous();
+notifyCustomer();
