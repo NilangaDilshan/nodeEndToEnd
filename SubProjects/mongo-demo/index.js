@@ -47,8 +47,19 @@ async function getCoursesWithComparisonQueryOperators() {
     .limit(10) //Limit the result to 10 documents
     .sort({ name: 1 }) //Sort by name field. 1 for ascending order, -1 for descending order
     .select({ name: 1, tags: 1 }); //select only name and tag fields of the document
-  console.log("All Mongo Courses: ", courses);
+  console.log("ComparisonQueryOperators Mongo Courses: ", courses);
+}
+
+async function getCoursesWithLogicalOperators() {
+  const courses = await Course.find({ price: { $gt: 7, $lt: 10 } })
+    .or([{ author: "Mosh" }, { isPublished: true }])
+    .and([{ isPublished: true }])
+    .limit(10)
+    .sort({ name: 1 })
+    .select({ name: 1, author: 1, price: 1 });
+  console.log("CoursesWithLogicalOperators Mongo Courses: ", courses);
 }
 //saveCourse();
-//getCourses();
+getCourses();
 getCoursesWithComparisonQueryOperators();
+getCoursesWithLogicalOperators();
