@@ -60,7 +60,7 @@ async function getCoursesWithLogicalOperators() {
   console.log("CoursesWithLogicalOperators Mongo Courses: ", courses);
 }
 
-async function getCOursesWithRegularExpressions() {
+async function getCoursesWithRegularExpressions() {
   const courses = await Course
     //.find({ author: /^Mosh/ }); //Starts with Mosh
     //.find({ author: /Hamedani$/i }) //Ends with Hamedani , Ignore case (i)
@@ -70,8 +70,17 @@ async function getCOursesWithRegularExpressions() {
     .select({ name: 1, author: 1, price: 1 });
   console.log("Courses with Mongo Regular Expressions: ", courses);
 }
+
+async function getCoursesCountExample() {
+  const courses = await Course.find({ author: /.*Mosh.*/i })
+    .limit(10)
+    .sort({ name: 1 })
+    .count();
+  console.log("Courses Count ", courses);
+}
 //saveCourse();
 //getCourses();
 //getCoursesWithComparisonQueryOperators();
 //getCoursesWithLogicalOperators();
-getCOursesWithRegularExpressions();
+//getCoursesWithRegularExpressions();
+getCoursesCountExample();
