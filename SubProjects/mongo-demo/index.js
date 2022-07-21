@@ -78,9 +78,21 @@ async function getCoursesCountExample() {
     .count();
   console.log("Courses Count ", courses);
 }
+
+async function getCoursesWithPagination() {
+  const pageNumber = 1;
+  const pageSize = 10;
+  const courses = await Course.find({ author: /.*Mosh.*/i })
+    .skip((pageNumber - 1) * pageSize) //This is to set the off set. To avoid previous page
+    .limit(pageSize) //This is the size of elements per page
+    .sort({ name: 1 })
+    .select({ name: 1, author: 1, price: 1 });
+  console.log("Courses With Pagination ", courses);
+}
 //saveCourse();
 //getCourses();
 //getCoursesWithComparisonQueryOperators();
 //getCoursesWithLogicalOperators();
 //getCoursesWithRegularExpressions();
-getCoursesCountExample();
+//getCoursesCountExample();
+getCoursesWithPagination();
