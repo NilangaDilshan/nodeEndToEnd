@@ -59,7 +59,19 @@ async function getCoursesWithLogicalOperators() {
     .select({ name: 1, author: 1, price: 1 });
   console.log("CoursesWithLogicalOperators Mongo Courses: ", courses);
 }
+
+async function getCOursesWithRegularExpressions() {
+  const courses = await Course
+    //.find({ author: /^Mosh/ }); //Starts with Mosh
+    //.find({ author: /Hamedani$/i }) //Ends with Hamedani , Ignore case (i)
+    .find({ author: /.*Mosh.*/i }) // Contains Mosh and ignore case
+    .limit(10)
+    .sort({ name: 1 })
+    .select({ name: 1, author: 1, price: 1 });
+  console.log("Courses with Mongo Regular Expressions: ", courses);
+}
 //saveCourse();
-getCourses();
-getCoursesWithComparisonQueryOperators();
-getCoursesWithLogicalOperators();
+//getCourses();
+//getCoursesWithComparisonQueryOperators();
+//getCoursesWithLogicalOperators();
+getCOursesWithRegularExpressions();
