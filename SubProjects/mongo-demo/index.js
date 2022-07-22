@@ -108,7 +108,8 @@ async function retrieveAndUpdateCourse(id) {
 }
 
 async function directDocumentUpdate(id) {
-  /* const result = await Course.updateOne(
+  /* Update course without retrieving the updated docuement */
+  const result = await Course.updateOne(
     { _id: id },
     {
       $set: {
@@ -116,8 +117,9 @@ async function directDocumentUpdate(id) {
       }
     }
   );
-  console.log("Update Direct Docuement Result: ", result); */
+  console.log("Update Direct Docuement Result: ", result);
 
+  /* Update course with retrieving the updated docuement */
   const courseResult = await Course.findByIdAndUpdate(
     id,
     {
@@ -132,6 +134,20 @@ async function directDocumentUpdate(id) {
     courseResult
   );
 }
+
+async function deleteRecord(id) {
+  /* Delete one docuement */
+  //const deleteCourse = await Course.deleteOne({ _id: id });
+
+  /* Delete multiple documents */
+  //const deleteCourse = await Course.deleteMany({ _id: id });
+
+  //Find the course and delete. This will give back the deleted document
+  const deleteCourse = await Course.findByIdAndRemove(id);
+
+  console.log("Deleted Course: ", deleteCourse);
+}
+
 //saveCourse();
 //getCourses();
 //getCoursesWithComparisonQueryOperators();
@@ -140,4 +156,5 @@ async function directDocumentUpdate(id) {
 //getCoursesCountExample();
 //getCoursesWithPagination();
 //retrieveAndUpdateCourse("62d78969cc254df8e942b99c");
-directDocumentUpdate("62d78969cc254df8e942b99c");
+//directDocumentUpdate("62d78969cc254df8e942b99c");
+//deleteRecord("62da8555b895ab6401d1acf9");
