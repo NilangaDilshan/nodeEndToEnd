@@ -108,7 +108,7 @@ async function retrieveAndUpdateCourse(id) {
 }
 
 async function directDocumentUpdate(id) {
-  const result = await Course.updateOne(
+  /* const result = await Course.updateOne(
     { _id: id },
     {
       $set: {
@@ -116,7 +116,21 @@ async function directDocumentUpdate(id) {
       }
     }
   );
-  console.log("Update Direct Docuement Restul: ", result);
+  console.log("Update Direct Docuement Result: ", result); */
+
+  const courseResult = await Course.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        price: 30
+      }
+    },
+    { new: true } //If you do not define this property you will get the previous docuement before the update
+  );
+  console.log(
+    "Update Direct Docuement Result(Get Document As Result): ",
+    courseResult
+  );
 }
 //saveCourse();
 //getCourses();
