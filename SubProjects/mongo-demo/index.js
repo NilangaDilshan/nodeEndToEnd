@@ -89,10 +89,29 @@ async function getCoursesWithPagination() {
     .select({ name: 1, author: 1, price: 1 });
   console.log("Courses With Pagination ", courses);
 }
+
+async function retrieveAndUpdateCourse(id) {
+  const course = await Course.findById(id);
+  if (!course) return;
+
+  /* Update Approach 1 */
+  //course.author = "New Author";
+  //course.price = 12;
+
+  /* Update Approach 2 */
+  course.set({
+    author: "New Author",
+    price: 12
+  });
+  const result = await course.save();
+  console.log("Update Restul: ", result);
+}
 //saveCourse();
 //getCourses();
 //getCoursesWithComparisonQueryOperators();
 //getCoursesWithLogicalOperators();
 //getCoursesWithRegularExpressions();
 //getCoursesCountExample();
-getCoursesWithPagination();
+//getCoursesWithPagination();
+
+retrieveAndUpdateCourse("62d78969cc254df8e942b99c");
