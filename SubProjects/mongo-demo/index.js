@@ -104,7 +104,19 @@ async function retrieveAndUpdateCourse(id) {
     price: 12
   });
   const result = await course.save();
-  console.log("Update Restul: ", result);
+  console.log("Retrieve and Update Restul: ", result);
+}
+
+async function directDocumentUpdate(id) {
+  const result = await Course.updateOne(
+    { _id: id },
+    {
+      $set: {
+        author: "Slayer"
+      }
+    }
+  );
+  console.log("Update Direct Docuement Restul: ", result);
 }
 //saveCourse();
 //getCourses();
@@ -113,5 +125,5 @@ async function retrieveAndUpdateCourse(id) {
 //getCoursesWithRegularExpressions();
 //getCoursesCountExample();
 //getCoursesWithPagination();
-
-retrieveAndUpdateCourse("62d78969cc254df8e942b99c");
+//retrieveAndUpdateCourse("62d78969cc254df8e942b99c");
+directDocumentUpdate("62d78969cc254df8e942b99c");
